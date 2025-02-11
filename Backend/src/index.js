@@ -11,9 +11,7 @@ import path from "path"
 dotenv.config()
 const PORT = process.env.PORT
 const __dirname = path.resolve()
-app.get("/",(req,res)=>{
-    res.send("Hello")
-})
+
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
