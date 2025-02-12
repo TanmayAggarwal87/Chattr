@@ -20,6 +20,9 @@ app.use(cors({
 
 })
 )
+app.get("/",(req,res)=>{
+    res.send("hello")
+})
 
 if (process.env.NODE_ENV ==="production"){
     app.use(express.static(path.join(__dirname,"../Frontend/dist")))
