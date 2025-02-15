@@ -20,9 +20,11 @@ app.use(cors({
 
 })
 )
-app.get("/",(req,res)=>{
-    res.send("hello")
-})
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use("/api/auth",authRoutes)
+app.use("/api/messages",messageRoutes)
 
 if (process.env.NODE_ENV ==="production"){
     app.use(express.static(path.join(__dirname,"../Frontend/dist")))
@@ -31,9 +33,9 @@ if (process.env.NODE_ENV ==="production"){
       });
 }
 
-app.use("/api/auth",authRoutes)
-app.use("/api/messages",messageRoutes)
+
 
 server.listen(PORT,()=>{
     console.log(`Running on ${PORT} `)
+    mongo();
 })
